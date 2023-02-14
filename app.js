@@ -4,6 +4,7 @@ const express = require('express');
 const app = express();
 const port = process.env.PORT || 3000;
 const connectDb = require('./db/connect');
+const authMiddleware = require('./middleware/authentication');
 //routers
 const authRouter = require('./routes/auth');
 const jobsRouter = require('./routes/jobs');
@@ -19,7 +20,7 @@ app.get('/', (req, res) => {
 });
 
 app.use('/api/v1/auth', authRouter);
-app.use('/api/v1/jobs', jobsRouter);
+app.use('/api/v1/jobs', authMiddleware, jobsRouter);
 
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
