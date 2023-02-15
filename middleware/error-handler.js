@@ -14,6 +14,13 @@ const errorHandlerMiddleware = (err, req, res, next) => {
     customError.statusCode = 400;
   }
 
+  // ! Validation error
+  if (err.name === 'ValidationError') {
+    customError.msg = Object.values(err.errors)
+      .map((item) => item.message)
+      .join(',');
+  }
+
   // status property based on statusCode
   customError.status = customError.statusCode.toString().startsWith('4') ? 'failed' : 'error';
 
