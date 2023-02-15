@@ -19,13 +19,14 @@ const errorHandlerMiddleware = (err, req, res, next) => {
     customError.msg = Object.values(err.errors)
       .map((item) => item.message)
       .join(',');
+    customError.statusCode = 400;
   }
 
   // status property based on statusCode
   customError.status = customError.statusCode.toString().startsWith('4') ? 'failed' : 'error';
 
-  return res.status(customError.statusCode).json({ status: customError.status, msg: customError.msg });
-  // return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ err });
+  // return res.status(customError.statusCode).json({ status: customError.status, msg: customError.msg });
+  return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ err });
 };
 
 module.exports = errorHandlerMiddleware;
