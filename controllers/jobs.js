@@ -1,7 +1,6 @@
 const Job = require('../models/Job');
 const { StatusCodes } = require('http-status-codes');
 const { BadRequestError, NotFoundError } = require('../errors');
-const { findOne, findOneAndUpdate } = require('../models/Job');
 
 // Get all jobs created by current user
 const getAllJobs = async (req, res) => {
@@ -34,7 +33,7 @@ const updateJob = async (req, res) => {
     user: { userId },
     params: { id: jobId },
   } = req;
-
+  // ! If company or position is empty string
   if (company === '' || position === '') {
     throw new BadRequestError('Please provide company and position fields');
   }
@@ -43,7 +42,7 @@ const updateJob = async (req, res) => {
     new: true,
     runValidators: true,
   });
-
+  // ! If job doesn't exist
   if (!job) {
     throw new NotFoundError(`No job with id ${jobId}`);
   }
