@@ -21,12 +21,16 @@ const errorHandlerMiddleware = (err, req, res, next) => {
       .join(',');
     customError.statusCode = 400;
   }
+  // ! Cast error (when syntax doesn't match)
+  if (err.name === 'CastError') {
+    customError.msg = `No item found with id: ${err.value}`;
+    customError.statusCode = 404;
+  }
 
   // status property based on statusCode
   customError.status = customError.statusCode.toString().startsWith('4') ? 'failed' : 'error';
 
-  // return res.status(customError.statusCode).json({ status: customError.status, msg: customError.msg });
-  return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ err });
+  return res.status(customError.statusCode).json({ status: customError.status, msg: customError.msg });
 };
 
 module.exports = errorHandlerMiddleware;
