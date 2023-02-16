@@ -1,69 +1,37 @@
-#### Setup
+# Jobs API Express
+
+Easy-to-use API to manage job listings. This Jobs API is a RESTful API built with Express.js that allows you to create, read, update, and delete job listings.
+
+## Demo
+
+https://jobs-api-fp06.onrender.com
+
+## Features
+
+- Get a list of all available jobs
+- Get details about a specific job
+- Add a new job to the list
+- Update an existing job
+- Delete a job from the list
+- Register and login with JWT authentication
+- Interface made with Swagger-UI
+
+## Installation
+
+To get started, simply clone this repository and run the following command:
 
 ```bash
-npm install && npm start
+  npm install
 ```
 
-#### Database Connection
+Once the dependencies are installed, you can start the server by running:
 
-1. Import connect.js
-2. Invoke in start()
-3. Setup .env in the root
-4. Add MONGO_URI with correct value
-
-#### Routers
-
-- auth.js
-- jobs.js
-
-#### User Model
-
-Email Validation Regex
-
-```regex
-/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+```bash
+  npm start
 ```
 
-#### Register User
+The server will run on port 3000 by default, but you can specify a different port by setting the **PORT** environment variable.
 
-- Validate - name, email, password - with Mongoose
-- Hash Password (with bcryptjs)
-- Save User
-- Generate Token
-- Send Response with Token
+## Usage
 
-#### Login User
-
-- Validate - email, password - in controller
-- If email or password is missing, throw BadRequestError
-- Find User
-- Compare Passwords
-- If no user or password does not match, throw UnauthenticatedError
-- If correct, generate Token
-- Send Response with Token
-
-#### Mongoose Errors
-
-- Validation Errors
-- Duplicate (Email)
-- Cast Error
-
-#### Security
-
-- helmet
-- cors
-- xss-clean
-- express-rate-limit
-
-Swagger UI
-
-```yaml
-/jobs/{id}:
-  parameters:
-    - in: path
-      name: id
-      schema:
-        type: string
-      required: true
-      description: the job id
-```
+This API has a simple and intuitive interface made with Swagger-UI, so you can start using it right away. The API documentation is there ;)
