@@ -4,7 +4,7 @@ Easy-to-use API to manage job listings. This Jobs API is a RESTful API built wit
 
 ## Demo
 
-https://jobs-api-fp06.onrender.com
+https://jobs-api-express.cyclic.app/
 
 ## Features
 
