@@ -33,7 +33,7 @@ app.use(xss());
 
 // routes
 app.get('/', (req, res) => {
-  res.status(200).send('Home page');
+  res.status(200).send('Welcome to my Jobs API');
 });
 
 app.use('/api/v1/auth', authRouter);
